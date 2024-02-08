@@ -35,7 +35,7 @@ function Header() {
         <h1 className="logo">Relógios</h1>
       </Link>
 
-      <div>
+      <div className={styles["container-car-search"]}>
         <div className={styles.seach} onClick={handleSeach}>
           <svg
             className="w-6 h-6 text-gray-800 dark:text-white"

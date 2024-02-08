@@ -1,6 +1,5 @@
 import { useState } from "react";
-import styles from "./style.module.scss";
-import useGlobalContext from "../../hooks/useGlobalContext";
+import styles from "./styles.module.scss";
 
 type PropsType = {
   openSideBar: Boolean;
