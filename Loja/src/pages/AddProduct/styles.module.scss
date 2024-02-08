@@ -1,0 +1,73 @@
+@import '../../styles/colors';
+
+.container {
+  width: 100%;
+}
+
+.sub-title {
+  margin-top: 62px;
+  width: 100%;
+
+  h2 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 123.5%;
+    letter-spacing: 0.25px;
+    color: $text-color;
+  }
+}
+
+.content-form {
+  display: flex;
+  width: 100%;
+  margin-top: 62px;
+
+  form {
+    width: 100%;
+
+    .form-inputs {
+      width: 392px;
+    }
+  }
+}
+
+.content-price-stock {
+  display: flex;
+  justify-content: space-between;
+
+  .input-label {
+    width: 184px;
+  }
+}
+
+.input-label {
+  margin-bottom: 16px;
+}
+
+.horizontal-line {
+  background-color: #BFBFBF;
+  height: 1px;
+  width: 100%;
+
+  margin: 80px 0 24px 0;
+}
+
+.content-buttons {
+  display: flex;
+  align-items: center;
+
+  a {
+    margin-right: 16px;
+    color: $primary;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+  }
+}
