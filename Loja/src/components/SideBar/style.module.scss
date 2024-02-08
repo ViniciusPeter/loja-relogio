@@ -26,6 +26,7 @@
       padding: 0 10px;
       background-color: rgb(255, 255, 255);
       border-bottom: 1px solid #ccc;
+      position: relative;
 
       display: flex;
       align-items: center;
@@ -179,9 +180,9 @@
 
 @keyframes closingSide {
   from {
-    width: 70%;
+    left: 0;
   }
   to {
-    width: 0%;
+    left: -400px;
   }
 }

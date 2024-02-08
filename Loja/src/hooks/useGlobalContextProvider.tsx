@@ -6,12 +6,18 @@ import ProductType from "../types/ProductType";
 function useGlobalContextProvider() {
   const [openModal, setOpenModal] = useState(false);
   const [currentIdProduct, setCurrentIdProduct] = useState(0);
-  const [allProducts, setAllProducts] = useLocalStorage<ProductType[]>('products', [...products]);
+  const [allProducts, setAllProducts] = useLocalStorage<ProductType[]>(
+    "products",
+    [...products]
+  );
+  const [openSearch, setOpenSearch] = useState<boolean>(true);
 
   function handleConfirmModal() {
     const localProducts = [...allProducts];
 
-    const currentProductIndex = localProducts.findIndex((product) => product.id === currentIdProduct);
+    const currentProductIndex = localProducts.findIndex(
+      (product) => product.id === currentIdProduct
+    );
 
     localProducts.splice(currentProductIndex, 1);
 
@@ -26,7 +32,7 @@ function useGlobalContextProvider() {
 
   function handleOpenModal(productId: number) {
     setCurrentIdProduct(productId);
-    setOpenModal(true)
+    setOpenModal(true);
   }
 
   return {
@@ -35,8 +41,10 @@ function useGlobalContextProvider() {
     handleCloseModal,
     handleOpenModal,
     allProducts,
-    setAllProducts
-  }
+    setAllProducts,
+    openSearch,
+    setOpenSearch,
+  };
 }
 
 export default useGlobalContextProvider;
