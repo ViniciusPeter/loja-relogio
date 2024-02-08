@@ -3,9 +3,9 @@ import styles from "./styles.module.scss";
 function Search() {
   return (
     <div className={styles["input-seach"]}>
-      <input type="text" placeholder="Busca" />
+      <input type="text" placeholder="Buscar" />
 
-      <div>
+      <div className={styles["icon-search"]}>
         <svg
           className="w-6 h-6 text-gray-800 dark:text-white"
           aria-hidden="true"

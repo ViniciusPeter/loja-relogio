@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./styles.module.scss";
+import { useNavigate } from "react-router-dom";
 
 type PropsType = {
   openSideBar: Boolean;
@@ -8,6 +9,7 @@ type PropsType = {
 
 function SideBar({ openSideBar, setOpenSidebar }: PropsType) {
   const [closing, setClosing] = useState<Boolean>(false);
+  const navigate = useNavigate();
 
   function handleClose() {
     setClosing(true);
@@ -15,6 +17,11 @@ function SideBar({ openSideBar, setOpenSidebar }: PropsType) {
       setOpenSidebar(false);
       setClosing(false);
     }, 400);
+  }
+
+  function handleLogin() {
+    setOpenSidebar(false);
+    navigate("/login");
   }
 
   return (
@@ -64,7 +71,7 @@ function SideBar({ openSideBar, setOpenSidebar }: PropsType) {
                 </svg>
                 <h3>Olá, faça seu login!</h3>
               </div>
-              <div className={styles.login}>
+              <div className={styles.login} onClick={handleLogin}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
