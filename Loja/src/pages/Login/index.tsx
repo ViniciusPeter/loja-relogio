@@ -1,6 +1,7 @@
 import styles from "./styles.module.scss";
 import { FormEvent } from "react";
 import Logo from "../../assets/logo.png";
+import { Link } from "react-router-dom";
 
 function Login() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -50,9 +51,7 @@ function Login() {
         </button>
         <p className="">
           Você ainda não tem conta?
-          <a href="#" className="">
-            Cadastre-se
-          </a>
+          <Link to="/cadastro">Cadastre-se.</Link>
         </p>
       </form>
     </div>

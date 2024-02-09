@@ -4,6 +4,7 @@ import Main from "./pages/Main";
 import AddProduct from "./pages/AddProduct";
 import GlobalContextProvider from "./contexts/GlobalContextProvider";
 import Login from "./pages/Login";
+import Cadastro from "./pages/Cadastro";
 
 function MainRoutes() {
   return (
@@ -12,6 +13,7 @@ function MainRoutes() {
         <Route path="/" element={<HeaderLayout />}>
           <Route path="/main" element={<Main />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/add-product" element={<AddProduct />} />
         </Route>
       </Routes>
