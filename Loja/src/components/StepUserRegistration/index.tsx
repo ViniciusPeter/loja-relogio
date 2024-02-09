@@ -58,6 +58,12 @@ function StepUserRegistration() {
     console.log(formCadastro);
   }
 
+  function handleChangeState({ target }: ChangeEvent<HTMLSelectElement>) {
+    const key = target.name;
+    const value = target.value;
+    setFormCadastro({ ...formCadastro, [key]: value });
+  }
+
   return (
     <form>
       {step === 1 && (
@@ -340,84 +346,115 @@ function StepUserRegistration() {
               Não sabe o CEP?
             </a>
           </div>
+          <div className={styles["container-street-number"]}>
+            <div className={styles["container-inputs"]}>
+              <label htmlFor="street">Rua/Avenida</label>
+              <input
+                type="text"
+                name="street"
+                id="street"
+                placeholder=""
+                onChange={handleChange}
+              />
+            </div>
+            <div className={styles["container-inputs"]}>
+              <label htmlFor="number">Número</label>
+              <input
+                type="number"
+                name="number"
+                id="number"
+                placeholder=""
+                onChange={handleChange}
+              />
+            </div>
+          </div>
           <div className={styles["container-inputs"]}>
-            <label htmlFor="email">Rua/Avenida</label>
+            <label htmlFor="complement">Complemento (opcional)</label>
             <input
-              type="email"
-              name="email"
-              id="email"
+              type="text"
+              name="complement"
+              id="complement"
+              placeholder=""
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles["container-city-state"]}>
+            <div className={styles["container-inputs"]}>
+              <label htmlFor="city">cidade</label>
+              <input
+                type="text"
+                name="city"
+                id="city"
+                placeholder=""
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles["container-inputs"]}>
+              <label htmlFor="state">Estado</label>
+              <select
+                name="state"
+                id="state"
+                onChange={handleChangeState}
+                required
+              >
+                <option value="">XX</option>
+                <option value="AC">AC</option>
+                <option value="AL">AL</option>
+                <option value="AP">AP</option>
+                <option value="AM">AM</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MT">MT</option>
+                <option value="MS">MS</option>
+                <option value="MG">MG</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PR">PR</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RS">RS</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="SC">SC</option>
+                <option value="SP">SP</option>
+                <option value="SE">SE</option>
+                <option value="TO">TO</option>
+              </select>
+            </div>
+          </div>
+          <div className={styles["container-inputs"]}>
+            <label htmlFor="reference">Ponto de referência (opcional)</label>
+            <input
+              type="text"
+              name="reference"
+              id="reference"
               placeholder=""
               onChange={handleChange}
             />
           </div>
           <div className={styles["container-inputs"]}>
-            <label htmlFor="password">Número</label>
+            <label htmlFor="type">Título do endereço</label>
             <input
               type="text"
-              name="password"
-              id="password"
+              name="type"
+              id="type"
               placeholder=""
               onChange={handleChange}
             />
           </div>
           <div className={styles["container-inputs"]}>
-            <label htmlFor="confirm-password">Complemento (opcional)</label>
+            <label htmlFor="recipient">Destinatário</label>
             <input
               type="text"
-              name="confirm-password"
-              id="confirm-password"
-              placeholder=""
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles["container-inputs"]}>
-            <label htmlFor="confirm-password">cidade</label>
-            <input
-              type="text"
-              name="confirm-password"
-              id="confirm-password"
-              placeholder=""
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles["container-inputs"]}>
-            <label htmlFor="confirm-password">Estado</label>
-            <input
-              type="text"
-              name="confirm-password"
-              id="confirm-password"
-              placeholder=""
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles["container-inputs"]}>
-            <label htmlFor="confirm-password">
-              Ponto de referência (opcional)
-            </label>
-            <input
-              type="text"
-              name="confirm-password"
-              id="confirm-password"
-              placeholder=""
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles["container-inputs"]}>
-            <label htmlFor="confirm-password">Título do endereço</label>
-            <input
-              type="text"
-              name="confirm-password"
-              id="confirm-password"
-              placeholder=""
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles["container-inputs"]}>
-            <label htmlFor="confirm-password">Destinatário</label>
-            <input
-              type="text"
-              name="confirm-password"
-              id="confirm-password"
+              name="recipient"
+              id="recipient"
               placeholder=""
               onChange={handleChange}
             />
