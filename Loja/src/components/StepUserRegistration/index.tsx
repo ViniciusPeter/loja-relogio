@@ -1,21 +1,53 @@
 import { ChangeEvent, useState } from "react";
 import styles from "./styles.module.scss";
 import useStepRegistrationContext from "../../hooks/useStepRegistrationContext";
+import { Link } from "react-router-dom";
 
-type FormCadastro = {
+type FormUserRegister = {
   name: string;
   email: string;
   cpf: string;
+  gender: "Masculino" | "Feminino";
   cell: string;
+  birthdate: Date;
+  password: string;
 };
 
-function UserRegistration() {
-  const [formCadastro, setFormCadastro] = useState<FormCadastro>({
+type FormUserAddress = {
+  zipcode: string;
+  street: string;
+  number: number | null;
+  complement: string;
+  city: string;
+  state: string;
+  reference: string;
+  type: string;
+  recipient: string;
+};
+
+function StepUserRegistration() {
+  const [formCadastro, setFormCadastro] = useState<FormUserRegister>({
     email: "",
     cpf: "",
     name: "",
+    gender: "Masculino",
     cell: "",
+    birthdate: new Date(),
+    password: "",
   });
+  const [formAddress, setFormAddress] = useState<FormUserAddress>({
+    zipcode: "",
+    street: "",
+    number: null,
+    complement: "",
+    city: "",
+    state: "",
+    reference: "",
+    type: "",
+    recipient: "",
+  });
+  const [showPassword, setShowPassword] = useState<Boolean>(true);
+  const [showConfirmPassword, setConfirmShowPassword] = useState<Boolean>(true);
   const { step, setStep, handleStepOne, handleStepTwo, handleStepThree } =
     useStepRegistrationContext();
 
@@ -37,8 +69,9 @@ function UserRegistration() {
               type="text"
               name="name"
               id="text"
-              placeholder="José Martelo da Silva"
+              placeholder="Digite seu nome completo"
               onChange={handleChange}
+              required
             />
           </div>
           <div className={styles["container-inputs"]}>
@@ -49,6 +82,7 @@ function UserRegistration() {
               id="email"
               placeholder="exemplo@email.com"
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -58,8 +92,9 @@ function UserRegistration() {
               type="text"
               name="cpf"
               id="cpf"
-              placeholder="XXX.XXX.XXX-XX"
+              placeholder="xxx.xxx.xxx-xx"
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -72,8 +107,9 @@ function UserRegistration() {
                   type="radio"
                   name="gender"
                   id="man"
-                  value="man"
+                  value="Masculino"
                   onChange={handleChange}
+                  defaultChecked
                 />
               </div>
               <div className={styles["input-radio"]}>
@@ -82,7 +118,7 @@ function UserRegistration() {
                   type="radio"
                   name="gender"
                   id="woman"
-                  value="woman"
+                  value="Feminino"
                   onChange={handleChange}
                 />
               </div>
@@ -128,6 +164,10 @@ function UserRegistration() {
               />
             </svg>
           </button>
+          <p>
+            Você tem conta?
+            <Link to="/login">Faça login.</Link>
+          </p>
         </div>
       )}
 
@@ -137,23 +177,121 @@ function UserRegistration() {
           <div className={styles["container-inputs"]}>
             <label htmlFor="password">Senha</label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               id="password"
               placeholder="••••••••"
               onChange={handleChange}
+              required
             />
+            {!showPassword && (
+              <div
+                className={styles.eyes}
+                onClick={() => setShowPassword(true)}
+              >
+                <svg
+                  className="w-6 h-6 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 14c-.5-.6-.9-1.3-1-2 0-1 4-6 9-6m7.6 3.8A5 5 0 0 1 21 12c0 1-3 6-9 6h-1m-6 1L19 5m-4 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                </svg>
+              </div>
+            )}
+
+            {showPassword && (
+              <div
+                className={styles.eyes}
+                onClick={() => setShowPassword(false)}
+              >
+                <svg
+                  className="w-6 h-6 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-width="2"
+                    d="M21 12c0 1.2-4 6-9 6s-9-4.8-9-6c0-1.2 4-6 9-6s9 4.8 9 6Z"
+                  />
+                  <path
+                    stroke="currentColor"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                </svg>
+              </div>
+            )}
           </div>
 
           <div className={styles["container-inputs"]}>
             <label htmlFor="confirm-password">Confirma senha</label>
             <input
-              type="password"
+              type={showConfirmPassword ? "text" : "password"}
               name="confirm-password"
               id="confirm-password"
               placeholder="••••••••"
               onChange={handleChange}
+              required
             />
+            {!showConfirmPassword && (
+              <div
+                className={styles.eyes}
+                onClick={() => setConfirmShowPassword(true)}
+              >
+                <svg
+                  className="w-6 h-6 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 14c-.5-.6-.9-1.3-1-2 0-1 4-6 9-6m7.6 3.8A5 5 0 0 1 21 12c0 1-3 6-9 6h-1m-6 1L19 5m-4 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                </svg>
+              </div>
+            )}
+
+            {showConfirmPassword && (
+              <div
+                className={styles.eyes}
+                onClick={() => setConfirmShowPassword(false)}
+              >
+                <svg
+                  className="w-6 h-6 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-width="2"
+                    d="M21 12c0 1.2-4 6-9 6s-9-4.8-9-6c0-1.2 4-6 9-6s9 4.8 9 6Z"
+                  />
+                  <path
+                    stroke="currentColor"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                </svg>
+              </div>
+            )}
           </div>
 
           <button type="button" onClick={handleStepTwo}>
@@ -174,6 +312,10 @@ function UserRegistration() {
               />
             </svg>
           </button>
+          <p>
+            Você tem conta?
+            <Link to="/login">Faça login.</Link>
+          </p>
         </div>
       )}
 
@@ -181,11 +323,11 @@ function UserRegistration() {
         <div className={styles["container-step"]}>
           <h1>Cadastrar endereço</h1>
           <div className={styles["container-inputs"]}>
-            <label htmlFor="email">CEP</label>
+            <label htmlFor="zipcode">CEP</label>
             <input
-              type="email"
-              name="email"
-              id="email"
+              type="text"
+              name="zipcode"
+              id="zipcode"
               placeholder=" 99999-999"
               onChange={handleChange}
             />
@@ -299,10 +441,14 @@ function UserRegistration() {
               />
             </svg>
           </button>
+          <p>
+            Você tem conta?
+            <Link to="/login">Faça login.</Link>
+          </p>
         </div>
       )}
     </form>
   );
 }
 
-export default UserRegistration;
+export default StepUserRegistration;

@@ -5,6 +5,8 @@
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 10;
+
   animation: openSideContainer 1s normal;
   backdrop-filter: blur(1.1px);
 
@@ -15,6 +17,7 @@
     background-color: #ffffff;
     color: black;
     position: relative;
+
     animation: openSide 1s normal;
 
     display: flex;

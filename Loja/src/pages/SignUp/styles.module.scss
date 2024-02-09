@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  padding: 20px 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  align-self: center;
+
+  // background: url("../../assets/male-watch-188780_1920.jpg");
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  // background-position: center;
+}

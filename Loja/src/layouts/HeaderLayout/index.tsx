@@ -12,7 +12,9 @@ function HeaderLayout() {
   return (
     <div className={styles.container}>
       <Header />
+
       {!openSearch && <Search />}
+
       <div className={styles["content-page"]}>
         <Outlet />
       </div>
