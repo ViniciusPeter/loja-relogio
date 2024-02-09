@@ -9,7 +9,7 @@ function Cadastro() {
 
   return (
     <div className={styles.container}>
-      <h1 className="">Faça login na sua conta</h1>
+      <h1 className="">Faça seu cadastro</h1>
       <form className="" onSubmit={handleSubmit}>
         <div className={styles["container-inputs"]}>
           <label htmlFor="email" className="">
