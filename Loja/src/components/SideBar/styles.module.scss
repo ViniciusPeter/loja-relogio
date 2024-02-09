@@ -1,12 +1,12 @@
 .container {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.534);
+  background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   left: 0;
   top: 0;
-
   animation: openSideContainer 1s normal;
+  backdrop-filter: blur(1.1px);
 
   .sidebar {
     width: 80%;
@@ -14,6 +14,7 @@
     height: 100vh;
     background-color: #ffffff;
     color: black;
+    position: relative;
     animation: openSide 1s normal;
 
     display: flex;
@@ -21,13 +22,14 @@
     align-items: center;
     justify-content: flex-start;
 
+    box-shadow: 1px 0px 14px -1px rgba(0, 0, 0, 0.75);
+
     .sidebar-title {
       width: 100%;
       height: 64px;
       padding: 0 10px;
       background-color: rgb(255, 255, 255);
       border-bottom: 1px solid #ccc;
-      position: relative;
 
       display: flex;
       align-items: center;
@@ -47,8 +49,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #ccc;
+        // background-color: #ccc;
+        padding: 4px;
+        border-radius: 8px;
         cursor: pointer;
+
+        &:hover {
+          background-color: #ccc;
+          svg {
+            path {
+              stroke: white;
+            }
+          }
+        }
 
         svg {
           height: 20px;
@@ -111,8 +124,6 @@
         list-style: none;
 
         &:hover {
-          // background-color: #1b1b1b;
-          // color: #ffffff;
           background-color: #a5a5a5;
           color: #fff;
           border: none;
@@ -168,10 +179,10 @@
 
 @keyframes openSide {
   from {
-    width: 0%;
+    left: -340px;
   }
   to {
-    width: 70%;
+    left: 0;
   }
 }
 
@@ -184,6 +195,6 @@
     left: 0;
   }
   to {
-    left: -400px;
+    left: -340px;
   }
 }

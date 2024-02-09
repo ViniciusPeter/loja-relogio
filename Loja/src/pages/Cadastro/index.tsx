@@ -1,8 +1,7 @@
 import styles from "./styles.module.scss";
 import { FormEvent } from "react";
-import Logo from "../../assets/logo.png";
 
-function Login() {
+function Cadastro() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     alert("Login efetuado com sucesso!");
@@ -10,9 +9,6 @@ function Login() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.logo}>
-        <img src={Logo} alt="Logo" />
-      </div>
       <h1 className="">Faça login na sua conta</h1>
       <form className="" onSubmit={handleSubmit}>
         <div className={styles["container-inputs"]}>
@@ -59,4 +55,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Cadastro;
