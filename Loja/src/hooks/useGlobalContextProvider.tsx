@@ -11,6 +11,7 @@ function useGlobalContextProvider() {
     [...products]
   );
   const [openSearch, setOpenSearch] = useState<boolean>(true);
+  const [openLoadingPage, setOpenLoadingPage] = useState<boolean>(false);
 
   function handleConfirmModal() {
     const localProducts = [...allProducts];
@@ -42,8 +43,11 @@ function useGlobalContextProvider() {
     handleOpenModal,
     allProducts,
     setAllProducts,
+    //Aqui são os meus
     openSearch,
     setOpenSearch,
+    openLoadingPage,
+    setOpenLoadingPage,
   };
 }
 

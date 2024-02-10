@@ -2,6 +2,8 @@ import { ChangeEvent, useState } from "react";
 import styles from "./styles.module.scss";
 import useStepRegistrationContext from "../../hooks/useStepRegistrationContext";
 import { Link } from "react-router-dom";
+import LoadingBtn from "../LoadingBtn";
+import useGlobalContextProvider from "../../hooks/useGlobalContextProvider";
 
 type FormUserRegister = {
   name: string;
@@ -18,6 +20,7 @@ type FormUserAddress = {
   street: string;
   number: number | null;
   complement: string;
+  neighborhood: string;
   city: string;
   state: string;
   reference: string;
@@ -40,6 +43,7 @@ function StepUserRegistration() {
     street: "",
     number: null,
     complement: "",
+    neighborhood: "",
     city: "",
     state: "",
     reference: "",
@@ -50,18 +54,44 @@ function StepUserRegistration() {
   const [showConfirmPassword, setConfirmShowPassword] = useState<Boolean>(true);
   const { step, setStep, handleStepOne, handleStepTwo, handleStepThree } =
     useStepRegistrationContext();
+  const { setOpenLoadingPage } = useGlobalContextProvider();
 
   function handleChange({ target }: ChangeEvent<HTMLInputElement>) {
     const key = target.name;
     const value = target.value;
     setFormCadastro({ ...formCadastro, [key]: value });
-    console.log(formCadastro);
+    // console.log(formCadastro);
+    if (key === "zipcode" && value.trim().length === 8) {
+      shearchCep(value);
+    }
   }
 
   function handleChangeState({ target }: ChangeEvent<HTMLSelectElement>) {
     const key = target.name;
     const value = target.value;
     setFormCadastro({ ...formCadastro, [key]: value });
+  }
+
+  async function shearchCep(zipcode: string) {
+    try {
+      setOpenLoadingPage(true);
+
+      const data = await fetch(
+        `https://viacep.com.br/ws/${zipcode}/json/`
+      ).then((response) => response.json());
+
+      setFormAddress({
+        ...formAddress,
+        street: data.logradouro,
+        neighborhood: data.bairro,
+        city: data.localidade,
+        state: data.uf,
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setOpenLoadingPage(false);
+    }
   }
 
   return (
@@ -336,6 +366,7 @@ function StepUserRegistration() {
               id="zipcode"
               placeholder=" 99999-999"
               onChange={handleChange}
+              required
             />
           </div>
           <div className={styles.forgot}>
@@ -354,8 +385,10 @@ function StepUserRegistration() {
                 name="street"
                 id="street"
                 placeholder=""
+                value={formAddress.street}
                 onChange={handleChange}
               />
+              {/* <LoadingBtn /> */}
             </div>
             <div className={styles["container-inputs"]}>
               <label htmlFor="number">Número</label>
@@ -378,6 +411,17 @@ function StepUserRegistration() {
               onChange={handleChange}
             />
           </div>
+          <div className={styles["container-inputs"]}>
+            <label htmlFor="neighborhood">Bairro</label>
+            <input
+              type="text"
+              name="neighborhood"
+              id="neighborhood"
+              placeholder=""
+              value={formAddress.neighborhood}
+              onChange={handleChange}
+            />
+          </div>
           <div className={styles["container-city-state"]}>
             <div className={styles["container-inputs"]}>
               <label htmlFor="city">cidade</label>
@@ -386,6 +430,7 @@ function StepUserRegistration() {
                 name="city"
                 id="city"
                 placeholder=""
+                value={formAddress.city}
                 onChange={handleChange}
               />
             </div>
@@ -395,6 +440,7 @@ function StepUserRegistration() {
               <select
                 name="state"
                 id="state"
+                value={formAddress.state.toUpperCase()}
                 onChange={handleChangeState}
                 required
               >

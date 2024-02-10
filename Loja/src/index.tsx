@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import MainRoutes from './routes';
-import './styles/index.scss';
-
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import MainRoutes from "./routes";
+import "./styles/index.scss";
+import LoadingPage from "./components/LoadingPage";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 
 root.render(
@@ -16,6 +16,7 @@ root.render(
     <BrowserRouter>
       <MainRoutes />
       <ToastContainer />
+      <LoadingPage />
     </BrowserRouter>
   </React.StrictMode>
 );
