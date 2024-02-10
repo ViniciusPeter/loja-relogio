@@ -26,7 +26,7 @@ function Login() {
             type="email"
             name="email"
             id="email"
-            placeholder="name@company.com"
+            placeholder="Digite seu email..."
           />
         </div>
         <div className={styles["container-inputs"]}>

@@ -46,6 +46,24 @@
       margin-top: 10px;
       position: relative;
 
+      div {
+        svg {
+          path {
+            stroke-width: 1px;
+          }
+        }
+      }
+
+      &:has(input:focus) {
+        div {
+          svg {
+            path {
+              stroke: white;
+            }
+          }
+        }
+      }
+
       label {
         font-size: 14px;
         font-weight: 600;
@@ -60,6 +78,49 @@
         outline: none;
         color: #474747;
         font-size: 16px;
+        font-family: "Inter";
+
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+          rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+          rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+
+        background-color: #ffffff;
+        color: #000;
+
+        &:focus {
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+            rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+            rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+
+          // box-shadow: rgba(255, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+          //   rgb(255, 0, 0) 0px 0.125em 0.1em,
+          //   rgba(255, 0, 0, 0.356) 0px 0px 0px 1px inset;
+
+          // box-shadow: rgba(0, 161, 0, 0.25) 0px 0.0625em 0.0625em,
+          //   rgb(21, 165, 45) 0px 0.125em 0.1em,
+          //   rgba(8, 190, 23, 0.356) 0px 0px 0px 1px inset;
+
+          // box-shadow: rgba(23, 8, 151, 0.342) 0px 0.0625em 0.0625em,
+          //   rgb(0, 17, 255) 0px 0.125em 0.1em,
+          //   rgba(4, 0, 255, 0.288) 0px 0px 0px 1px inset;
+
+          font-weight: 500;
+          background-color: #fff;
+        }
+
+        &:focus {
+          background-color: #383838;
+          font-weight: 500;
+          color: #ffffff;
+
+          &::placeholder {
+            color: #fff;
+          }
+
+          &::selection {
+            background-color: #383838;
+          }
+        }
       }
 
       .eyes {
