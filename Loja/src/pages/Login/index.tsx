@@ -53,7 +53,7 @@ function Login() {
             E-mail
           </label>
           <input
-            className={errors.password ? styles["input-error"] : ""}
+            className={errors.email ? styles["input-error"] : ""}
             type="email"
             placeholder="Digite seu email..."
             {...register("email")}
