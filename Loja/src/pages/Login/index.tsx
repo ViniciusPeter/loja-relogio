@@ -1,14 +1,44 @@
 import styles from "./styles.module.scss";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+type LoginType = {
+  email: string;
+  password: string;
+};
+
+const createLoginSchema = z.object({
+  email: z
+    .string()
+    .min(1, "O e-mail é obrigatório")
+    .email("Formato de email inválido"),
+  password: z.string().min(6, "A senha precisa ter no mínimo 6 caracteres"),
+});
+
+type CreateLoginFormData = z.infer<typeof createLoginSchema>;
 
 function Login() {
   const [showPassword, setShowPassword] = useState<boolean>(true);
+  const [form, setForm] = useState<LoginType>({
+    email: "",
+    password: "",
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreateLoginFormData>({
+    resolver: zodResolver(createLoginSchema),
+  });
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  function handleLogin(data: any) {
     alert("Login efetuado com sucesso!");
+    const output = JSON.stringify(data);
+    console.log(data);
   }
 
   return (
@@ -17,27 +47,46 @@ function Login() {
         <img src={Logo} alt="Logo" />
       </div>
       <h1 className="">Faça login na sua conta</h1>
-      <form className="" onSubmit={handleSubmit}>
+      <form className="" onSubmit={handleSubmit(handleLogin)}>
         <div className={styles["container-inputs"]}>
           <label htmlFor="email" className="">
             E-mail
           </label>
           <input
+            className={errors.password ? styles["input-error"] : ""}
             type="email"
-            name="email"
-            id="email"
             placeholder="Digite seu email..."
+            {...register("email")}
           />
         </div>
+        {errors.email && (
+          <span>
+            <svg
+              className="w-6 h-6 text-gray-800 dark:text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm9.4-5.5a1 1 0 1 0 0 2 1 1 0 1 0 0-2ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4c0-.6-.4-1-1-1h-2Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <p>{errors.email.message}</p>
+          </span>
+        )}
+
         <div className={styles["container-inputs"]}>
           <label htmlFor="password" className="">
             Senha
           </label>
           <input
+            className={errors.password ? styles["input-error"] : ""}
             type={showPassword ? "text" : "password"}
-            name="password"
-            id="password"
             placeholder="••••••••"
+            {...register("password")}
           />
           {!showPassword && (
             <div className={styles.eyes} onClick={() => setShowPassword(true)}>
@@ -82,6 +131,24 @@ function Login() {
             </div>
           )}
         </div>
+        {errors.password && (
+          <span>
+            <svg
+              className="w-6 h-6 text-gray-800 dark:text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2 12a10 10 0 1 1 20 0 10 10 0 0 1-20 0Zm9.4-5.5a1 1 0 1 0 0 2 1 1 0 1 0 0-2ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4c0-.6-.4-1-1-1h-2Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <p>{errors.password.message}</p>
+          </span>
+        )}
         <div className={styles.forgot}>
           <a href="#" className="">
             Esqueceu a senha?
