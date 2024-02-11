@@ -5,11 +5,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-type LoginType = {
-  email: string;
-  password: string;
-};
+import notify from "../../utils/notify";
 
 const createLoginSchema = z.object({
   email: z
@@ -23,10 +19,7 @@ type CreateLoginFormData = z.infer<typeof createLoginSchema>;
 
 function Login() {
   const [showPassword, setShowPassword] = useState<boolean>(true);
-  const [form, setForm] = useState<LoginType>({
-    email: "",
-    password: "",
-  });
+
   const {
     register,
     handleSubmit,
@@ -36,8 +29,7 @@ function Login() {
   });
 
   function handleLogin(data: any) {
-    alert("Login efetuado com sucesso!");
-    const output = JSON.stringify(data);
+    notify("Login efetuado com sucesso!", "success", "dark");
     console.log(data);
   }
 
