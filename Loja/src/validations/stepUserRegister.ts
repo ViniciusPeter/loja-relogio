@@ -6,7 +6,7 @@ export const createStepUserResgiterSchema = z.object({
   cpf: z.string().trim().min(11, "O CPF precisa ter 11 caracteres"),
   genres: z.enum(["Masculino", "Feminino"]),
   birthday: z.date(),
-  cell: z.string(),
+  cell: z.string().min(1, "O celular é obrigatório"),
 });
 
 export type CreateStepUserRegisterFormData = z.infer<

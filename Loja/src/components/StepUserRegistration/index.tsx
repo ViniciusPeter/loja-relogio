@@ -212,7 +212,7 @@ function StepUserRegistration() {
                 <div className={styles["input-radio"]}>
                   <label htmlFor="man">Masculino</label>
                   <input
-                    className={errors.genres ? styles["input-error"] : ""}
+                    // className={errors.genres ? styles["input-error"] : ""}
                     type="radio"
                     id="man"
                     value="Masculino"
