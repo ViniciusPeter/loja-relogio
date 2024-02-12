@@ -3,26 +3,15 @@ import { useState } from "react";
 import Logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import notify from "../../utils/notify";
-
-const createLoginSchema = z.object({
-  email: z
-    .string()
-    .min(1, "O e-mail é obrigatório")
-    .email("Formato de email inválido"),
-  password: z
-    .string()
-    .trim()
-    .min(6, "A senha precisa ter no mínimo 6 caracteres"),
-});
-
-type CreateLoginFormData = z.infer<typeof createLoginSchema>;
+import {
+  CreateLoginFormData,
+  createLoginSchema,
+} from "../../validations/login";
 
 function Login() {
   const [showPassword, setShowPassword] = useState<boolean>(true);
-
   const {
     register,
     handleSubmit,

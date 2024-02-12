@@ -1,3 +1,7 @@
+.container {
+  min-width: 100%;
+}
+
 form {
   width: 100%;
   max-width: 500px;
@@ -229,6 +233,13 @@ form {
         color: #474747;
         font-size: 16px;
       }
+
+      .input-error {
+        background-color: #ffffff;
+        box-shadow: rgba(255, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+          rgb(255, 0, 0) 0px 0.125em 0.1em,
+          rgba(255, 0, 0, 0.356) 0px 0px 0px 1px inset;
+      }
     }
 
     .forgot {
@@ -266,6 +277,22 @@ form {
       a {
         margin-left: 6px;
       }
+    }
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+    margin-left: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: red;
+
+    svg {
+      width: 18px;
+      height: 18px;
     }
   }
 }
