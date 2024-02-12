@@ -1,4 +1,4 @@
-import StepUserRegistration from "../../components/StepUserRegistration";
+import StepUserRegistration from "../../components/UserRegistration";
 import styles from "./styles.module.scss";
 
 function SignUp() {
