@@ -161,6 +161,7 @@
 
   a {
     color: rgb(0, 89, 255);
+    font-size: 14px;
     font-weight: 700;
   }
 
@@ -177,7 +178,7 @@
 
   span {
     display: flex;
-    align-items: center;
+
     gap: 4px;
     margin-top: 4px;
     margin-left: 4px;
@@ -185,9 +186,15 @@
     font-weight: 500;
     color: red;
 
+    p {
+      padding: 0;
+      display: flex;
+      text-align: left;
+    }
+
     svg {
-      width: 18px;
-      height: 18px;
+      min-height: 18px;
+      max-height: 18px;
     }
   }
 }

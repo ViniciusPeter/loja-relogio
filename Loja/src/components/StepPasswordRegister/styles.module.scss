@@ -1,21 +1,6 @@
 .container {
   min-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
 }
-
-// .container-left {
-//   height: 100vh;
-//   width: 50%;
-//   border-radius: 20px;
-
-//   background: url("../../assets/male-watch-188780_1920.jpg");
-//   background-size: cover;
-//   background-repeat: no-repeat;
-//   background-position: center;
-// }
 
 form {
   width: 100%;
@@ -326,29 +311,6 @@ form {
     svg {
       width: 18px;
       height: 18px;
-    }
-  }
-
-  .container-buttons-step {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-
-    button:nth-child(1) {
-      width: 40%;
-      background-color: #fff;
-      color: #000000;
-
-      &:hover {
-        background-color: #383838;
-        color: #fff;
-      }
-
-      svg {
-        margin: 0 8px 0 0;
-      }
     }
   }
 }

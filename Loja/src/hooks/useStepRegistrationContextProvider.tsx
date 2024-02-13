@@ -6,13 +6,16 @@ function useStepRegistrationContextProvider() {
   const [step, setStep] = useState<StepType>(1);
 
   function handleStepOne() {
-    setStep(2);
+    setStep(1);
+    console.log("ok One", step);
   }
   function handleStepTwo() {
-    setStep(3);
+    setStep(2);
+    console.log("ok two", step);
   }
   function handleStepThree() {
-    setStep(1);
+    setStep(3);
+    console.log("ok Three", step);
   }
 
   return {

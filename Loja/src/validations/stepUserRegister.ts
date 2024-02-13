@@ -1,12 +1,18 @@
 import { z } from "zod";
+import { cpf } from "cpf-cnpj-validator";
 
 export const createStepUserResgiterSchema = z.object({
   name: z.string().trim().min(10, "Escreva seu nome completo"),
   email: z.string().trim().email("Escreva um email válido"),
-  cpf: z.string().trim().min(11, "O CPF precisa ter 11 caracteres"),
+  cpf: z
+    .string()
+    .trim()
+    .refine((value) => {
+      return cpf.isValid(value);
+    }, "Informe um CPF válido"),
   genres: z.enum(["Masculino", "Feminino"]),
-  birthday: z.date(),
-  cell: z.string().min(1, "O celular é obrigatório"),
+  birthday: z.string().trim().min(1, "A data de aniversário é obrigatória"),
+  cell: z.string().trim().min(1, "O celular é obrigatório"),
 });
 
 export type CreateStepUserRegisterFormData = z.infer<

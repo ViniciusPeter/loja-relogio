@@ -1,14 +1,14 @@
-import styles from "./styles.module.scss";
-import { useState } from "react";
-import Logo from "../../assets/logo.png";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import Logo from "../../assets/logo.png";
 import notify from "../../utils/notify";
 import {
   CreateLoginFormData,
   createLoginSchema,
 } from "../../validations/login";
+import styles from "./styles.module.scss";
 
 function Login() {
   const [showPassword, setShowPassword] = useState<boolean>(true);
@@ -133,15 +133,14 @@ function Login() {
             <p>{errors.password.message}</p>
           </span>
         )}
+
         <div className={styles.forgot}>
           <a href="#" className="">
             Esqueceu a senha?
           </a>
         </div>
 
-        <button type="submit" className="">
-          Entrar
-        </button>
+        <button type="submit">Entrar</button>
         <p className="">
           Você ainda não tem conta?
           <Link to="/sign-up">Cadastre-se.</Link>
