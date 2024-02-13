@@ -10,7 +10,7 @@ import { useState } from "react";
 import useStepRegistrationContext from "../../hooks/useStepRegistrationContext";
 
 function StepPasswordRegister() {
-  const { handleStepOne, handleStepTwo, step } = useStepRegistrationContext();
+  const { handleStepOne, handleStepThree, step } = useStepRegistrationContext();
   const {
     register,
     handleSubmit,
@@ -23,8 +23,8 @@ function StepPasswordRegister() {
 
   function handleStepTwoForm(data: CreateStepPasswordRegisterFormData) {
     console.log(data);
-    console.log(errors);
-    handleStepTwo();
+    console.log("ok");
+    handleStepThree();
   }
 
   return (
@@ -188,7 +188,7 @@ function StepPasswordRegister() {
             )}
 
             <div className={styles["container-buttons-step"]}>
-              <button type="button" onClick={handleStepOne}>
+              <button type="submit" onClick={handleStepOne}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -206,7 +206,7 @@ function StepPasswordRegister() {
                 </svg>
                 Voltar
               </button>
-              <button type="button">
+              <button type="submit">
                 Próximo
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"

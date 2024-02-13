@@ -11,7 +11,7 @@ export const createStepPasswordResgiterSchema = z
       .string()
       .min(8, "A senha precisa ter no mínimo 8 dígitos")
       .refine(passwordContainsLetterOrNumber, {
-        message: "A senha precisa conter ao menos letras e ´números",
+        message: "A senha precisa conter ao menos letras e números",
       }),
     confirmPassword: z
       .string()
