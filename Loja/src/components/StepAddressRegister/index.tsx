@@ -92,6 +92,7 @@ function StepAddressRegister() {
         <form onSubmit={handleSubmit(handleStepThreeForm)}>
           <div className={styles["container-step"]}>
             <h1>Cadastrar endereço</h1>
+
             <div className={styles["container-inputs"]}>
               <label htmlFor="zipcode">CEP</label>
               <input
@@ -100,7 +101,6 @@ function StepAddressRegister() {
                 id="zipcode"
                 placeholder="Digite somente números"
                 {...register("zipcode")}
-                // onChange={handleChange}
                 onBlur={handleBlur}
               />
             </div>

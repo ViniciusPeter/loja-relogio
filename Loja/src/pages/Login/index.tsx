@@ -69,7 +69,7 @@ function Login() {
           <input
             className={errors.password ? styles["input-error"] : ""}
             type={showPassword ? "text" : "password"}
-            placeholder="••••••••"
+            placeholder="Digite sua senha..."
             {...register("password")}
           />
           {!showPassword && (

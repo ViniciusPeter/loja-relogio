@@ -7,15 +7,12 @@ function useStepRegistrationContextProvider() {
 
   function handleStepOne() {
     setStep(1);
-    console.log("ok One", step);
   }
   function handleStepTwo() {
     setStep(2);
-    console.log("ok two", step);
   }
   function handleStepThree() {
     setStep(3);
-    console.log("ok Three", step);
   }
 
   return {

@@ -23,7 +23,6 @@ function StepPasswordRegister() {
 
   function handleStepTwoForm(data: CreateStepPasswordRegisterFormData) {
     console.log(data);
-    console.log("ok");
     handleStepThree();
   }
 
@@ -34,12 +33,13 @@ function StepPasswordRegister() {
           <div className={styles["container-step"]}>
             <h1>Cadastrar senha</h1>
             <div className={styles["container-inputs"]}>
-              <label htmlFor="password">Senha</label>
+              <label htmlFor="password">Definir senha</label>
               <input
                 className={errors.password ? styles["input-error"] : ""}
                 type={showPassword ? "text" : "password"}
                 id="password"
-                placeholder="••••••••"
+                placeholder="Digite sua senha..."
+                style={{}}
                 {...register("password")}
               />
               {!showPassword && (
@@ -111,12 +111,12 @@ function StepPasswordRegister() {
             )}
 
             <div className={styles["container-inputs"]}>
-              <label htmlFor="confirm-password">Confirma senha</label>
+              <label htmlFor="confirm-password">Confirme sua senha</label>
               <input
                 className={errors.confirmPassword ? styles["input-error"] : ""}
                 type={showConfirmPassword ? "text" : "password"}
                 id="confirm-password"
-                placeholder="••••••••"
+                placeholder="Digite sua senha novamente..."
                 {...register("confirmPassword")}
               />
               {!showConfirmPassword && (

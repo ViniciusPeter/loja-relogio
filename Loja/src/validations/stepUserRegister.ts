@@ -14,12 +14,23 @@ export const createStepUserResgiterSchema = z.object({
   birthday: z
     .string()
     .refine((date) => new Date(date).toString() !== "Invalid Date", {
-      message: "A data de nascimento obrigatória",
+      message: "A data de nascimento é obrigatória",
     })
     .refine((date) => new Date(date) < new Date(), {
       message: "A data tem que ser menor que a atual",
     }),
-  cell: z.string().trim().min(1, "O celular é obrigatório"),
+  cell: z
+    .string()
+    .trim()
+    .refine(
+      (cell) => {
+        const numberCell = cell.split("").filter((caracter) => {
+          return Number(caracter);
+        });
+        return numberCell.length > 11;
+      },
+      { message: "Digite um celular válido" }
+    ),
 });
 
 export type CreateStepUserRegisterFormData = z.infer<

@@ -22,9 +22,9 @@ function StepUserRegister() {
   function handleStepOneForm(data: CreateStepUserRegisterFormData) {
     handleStepTwo();
     console.log(data);
+    console.log(data.cell.length);
   }
 
-  console.log(errors);
   return (
     <>
       {step === 1 && (
@@ -95,7 +95,7 @@ function StepUserRegister() {
               <InputMask
                 className={errors.cpf ? styles["input-error"] : ""}
                 mask="999.999.999-99"
-                placeholder="xxx.xxx.xxx-xx"
+                placeholder="Digite seu CPF..."
                 id="cpf"
                 type="text"
                 {...register("cpf")}
@@ -202,7 +202,7 @@ function StepUserRegister() {
               <InputMask
                 className={errors.cell ? styles["input-error"] : ""}
                 mask="(99) 99999-9999"
-                // placeholder="(99) 99999-9999"
+                placeholder="Digite seu celular..."
                 id="cell"
                 type="text"
                 {...register("cell")}
