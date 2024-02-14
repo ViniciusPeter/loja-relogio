@@ -2,7 +2,11 @@ import { z } from "zod";
 import { cpf } from "cpf-cnpj-validator";
 
 export const createStepUserResgiterSchema = z.object({
-  name: z.string().trim().min(10, "Escreva seu nome completo"),
+  name: z
+    .string()
+    .trim()
+    .min(10, "Escreva seu nome completo")
+    .max(100, "Limite máximo de 100 letras"),
   email: z.string().trim().email("Escreva um email válido"),
   cpf: z
     .string()
@@ -27,7 +31,7 @@ export const createStepUserResgiterSchema = z.object({
         const numberCell = cell.split("").filter((caracter) => {
           return Number(caracter);
         });
-        return numberCell.length > 11;
+        return numberCell.length >= 11;
       },
       { message: "Digite um celular válido" }
     ),
