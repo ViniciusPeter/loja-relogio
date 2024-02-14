@@ -44,7 +44,7 @@ function StepAddressRegister() {
 
   async function handleBlur() {
     const zipcode = getValues("zipcode");
-    console.log(zipcode);
+
     if (zipcode.trim().length === 8) {
       await shearchCep(zipcode);
     }
@@ -85,7 +85,6 @@ function StepAddressRegister() {
     setValue("state", data.uf, options);
   }
 
-  console.log("rederizando");
   return (
     <>
       {step === 3 && (
