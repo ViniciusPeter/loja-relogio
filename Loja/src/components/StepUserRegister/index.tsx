@@ -173,7 +173,7 @@ function StepUserRegister() {
                 type="date"
                 id="birthdate"
                 placeholder="dd/mm/aaaa"
-                {...register("birthday")}
+                {...(register("birthday"), { valueAsDate: true })}
               />
             </div>
             {errors.birthday && (

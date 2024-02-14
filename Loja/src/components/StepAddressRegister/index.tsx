@@ -1,14 +1,15 @@
-import { useForm } from "react-hook-form";
-import styles from "./styles.module.scss";
-import { Link } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ChangeEvent, useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import useGlobalContext from "../../hooks/useGlobalContext";
+import useStepRegistrationContext from "../../hooks/useStepRegistrationContext";
+import notify from "../../utils/notify";
 import {
   CreateStepAddressRegisterFormData,
   createStepAddressResgiterSchema,
 } from "../../validations/stepAddressRegister ";
-import { ChangeEvent, useState } from "react";
-import useGlobalContextProvider from "../../hooks/useGlobalContextProvider";
-import useStepRegistrationContext from "../../hooks/useStepRegistrationContext";
+import styles from "./styles.module.scss";
 
 type FormUserAddress = {
   zipcode: string;
@@ -24,23 +25,13 @@ type FormUserAddress = {
 };
 
 function StepAddressRegister() {
-  const { setOpenLoadingPage } = useGlobalContextProvider();
-  const [formAddress, setFormAddress] = useState<FormUserAddress>({
-    zipcode: "",
-    street: "",
-    number: null,
-    complement: "",
-    neighborhood: "",
-    city: "",
-    state: "",
-    reference: "",
-    type: "",
-    recipient: "",
-  });
+  const { setOpenLoadingPage } = useGlobalContext();
   const { handleStepTwo, step, handleStepOne } = useStepRegistrationContext();
   const {
     register,
     handleSubmit,
+    setValue,
+    getValues,
     formState: { errors },
   } = useForm<CreateStepAddressRegisterFormData>({
     resolver: zodResolver(createStepAddressResgiterSchema),
@@ -52,16 +43,19 @@ function StepAddressRegister() {
     handleStepOne();
   }
 
-  function handleChange({ target }: ChangeEvent<HTMLInputElement>) {
-    const key = target.name;
-    const value = target.value;
-    setFormAddress({ ...formAddress, [key]: value });
-    if (key === "zipcode" && value.trim().length === 8) {
-      shearchCep(value);
+  async function handleBlur() {
+    const zipcode = getValues("zipcode");
+    console.log(zipcode);
+    if (zipcode.trim().length === 8) {
+      await shearchCep(zipcode);
     }
   }
 
   async function shearchCep(zipcode: string) {
+    if (!zipcode.trim()) {
+      return;
+    }
+
     try {
       setOpenLoadingPage(true);
 
@@ -69,20 +63,30 @@ function StepAddressRegister() {
         `https://viacep.com.br/ws/${zipcode}/json/`
       ).then((response) => response.json());
 
-      setFormAddress({
-        ...formAddress,
-        street: data.logradouro,
-        neighborhood: data.bairro,
-        city: data.localidade,
-        state: data.uf,
-      });
+      if (data.erro) {
+        return notify("CEP Inválido", "error", "dark");
+      }
+
+      setValueZipcode(data);
     } catch (error) {
+      notify("Ops! erro inesperado!", "info", "dark");
       console.log(error);
     } finally {
       setOpenLoadingPage(false);
     }
   }
 
+  function setValueZipcode(data: any) {
+    const options = {
+      shouldValidate: true,
+    };
+    setValue("street", data.logradouro, options);
+    setValue("neighborhood", data.bairro, options);
+    setValue("city", data.localidade, options);
+    setValue("state", data.uf, options);
+  }
+
+  console.log("rederizando");
   return (
     <>
       {step === 3 && (
@@ -95,9 +99,10 @@ function StepAddressRegister() {
                 className={errors.zipcode ? styles["input-error"] : ""}
                 type="text"
                 id="zipcode"
-                placeholder=" 99999-999"
+                placeholder="Digite somente números"
                 {...register("zipcode")}
-                onChange={handleChange}
+                // onChange={handleChange}
+                onBlur={handleBlur}
               />
             </div>
             {errors.zipcode && (
@@ -135,7 +140,6 @@ function StepAddressRegister() {
                   className={errors.street ? styles["input-error"] : ""}
                   type="text"
                   id="street"
-                  value={formAddress.street}
                   {...register("street")}
                 />
               </div>
@@ -146,7 +150,7 @@ function StepAddressRegister() {
                   className={errors.number ? styles["input-error"] : ""}
                   type="number"
                   id="number"
-                  {...register("number")}
+                  {...(register("number"), { valueAsNumber: true })}
                 />
               </div>
             </div>
@@ -221,7 +225,7 @@ function StepAddressRegister() {
                 className={errors.neighborhood ? styles["input-error"] : ""}
                 type="text"
                 id="neighborhood"
-                value={formAddress.neighborhood}
+                {...register("neighborhood")}
               />
             </div>
             {errors.neighborhood && (
@@ -250,7 +254,6 @@ function StepAddressRegister() {
                   className={errors.neighborhood ? styles["input-error"] : ""}
                   type="text"
                   id="city"
-                  value={formAddress.city}
                   {...register("city")}
                 />
               </div>
@@ -260,7 +263,6 @@ function StepAddressRegister() {
                 <select
                   className={errors.state ? styles["input-error"] : ""}
                   id="state"
-                  value={formAddress.state.toUpperCase()}
                   {...register("state")}
                 >
                   <option value="">XX</option>
@@ -434,7 +436,7 @@ function StepAddressRegister() {
                 </svg>
                 Voltar
               </button>
-              <button type="button">
+              <button type="submit">
                 Finalizar
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
