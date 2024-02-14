@@ -3,7 +3,7 @@ import { useState } from "react";
 type StepType = 1 | 2 | 3;
 
 function useStepRegistrationContextProvider() {
-  const [step, setStep] = useState<StepType>(3);
+  const [step, setStep] = useState<StepType>(1);
 
   function handleStepOne() {
     setStep(1);
