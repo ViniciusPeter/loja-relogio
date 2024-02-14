@@ -7,9 +7,10 @@ import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useStepRegistrationContext from "../../hooks/useStepRegistrationContext";
+import InputMask from "react-input-mask";
 
 function StepUserRegister() {
-  const { handleStepTwo, step, setStep } = useStepRegistrationContext();
+  const { handleStepTwo, step } = useStepRegistrationContext();
   const {
     register,
     handleSubmit,
@@ -21,13 +22,13 @@ function StepUserRegister() {
   function handleStepOneForm(data: CreateStepUserRegisterFormData) {
     handleStepTwo();
     console.log(data);
-    console.log(step);
   }
 
+  console.log(errors);
   return (
     <>
       {step === 1 && (
-        <form onSubmit={handleSubmit(handleStepOneForm)}>
+        <form onSubmit={handleSubmit(handleStepOneForm)} noValidate>
           <div className={styles["container-step"]}>
             <h1>Faça seu cadastro</h1>
 
@@ -91,11 +92,12 @@ function StepUserRegister() {
 
             <div className={styles["container-inputs"]}>
               <label htmlFor="cpf">CPF</label>
-              <input
+              <InputMask
                 className={errors.cpf ? styles["input-error"] : ""}
-                type="text"
-                id="cpf"
+                mask="999.999.999-99"
                 placeholder="xxx.xxx.xxx-xx"
+                id="cpf"
+                type="text"
                 {...register("cpf")}
               />
             </div>
@@ -173,7 +175,7 @@ function StepUserRegister() {
                 type="date"
                 id="birthdate"
                 placeholder="dd/mm/aaaa"
-                {...(register("birthday"), { valueAsDate: true })}
+                {...register("birthday")}
               />
             </div>
             {errors.birthday && (
@@ -197,11 +199,12 @@ function StepUserRegister() {
 
             <div className={styles["container-inputs"]}>
               <label htmlFor="cell">Celular (DDD + número)</label>
-              <input
+              <InputMask
                 className={errors.cell ? styles["input-error"] : ""}
-                type="text"
+                mask="(99) 99999-9999"
+                // placeholder="(99) 99999-9999"
                 id="cell"
-                placeholder="(00) 00000-0000"
+                type="text"
                 {...register("cell")}
               />
             </div>

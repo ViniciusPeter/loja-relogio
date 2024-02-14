@@ -11,7 +11,14 @@ export const createStepUserResgiterSchema = z.object({
       return cpf.isValid(value);
     }, "Informe um CPF válido"),
   genres: z.enum(["Masculino", "Feminino"]),
-  birthday: z.string().trim().min(1, "A data de aniversário é obrigatória"),
+  birthday: z
+    .string()
+    .refine((date) => new Date(date).toString() !== "Invalid Date", {
+      message: "A data de nascimento obrigatória",
+    })
+    .refine((date) => new Date(date) < new Date(), {
+      message: "A data tem que ser menor que a atual",
+    }),
   cell: z.string().trim().min(1, "O celular é obrigatório"),
 });
 
