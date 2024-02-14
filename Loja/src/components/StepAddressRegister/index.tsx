@@ -78,6 +78,8 @@ function StepAddressRegister() {
   function setValueZipcode(data: any) {
     const options = {
       shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
     };
     setValue("street", data.logradouro, options);
     setValue("neighborhood", data.bairro, options);
