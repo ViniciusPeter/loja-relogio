@@ -30,8 +30,8 @@ function Login() {
       <div className={styles.logo}>
         <img src={Logo} alt="Logo" />
       </div>
-      <h1 className="">Faça login na sua conta</h1>
-      <form className="" onSubmit={handleSubmit(handleLogin)}>
+      <h1>Faça login na sua conta</h1>
+      <form onSubmit={handleSubmit(handleLogin)}>
         <div className={styles["container-inputs"]}>
           <label htmlFor="email" className="">
             E-mail
@@ -44,7 +44,7 @@ function Login() {
           />
         </div>
         {errors.email && (
-          <span>
+          <span className={styles["message-form-error"]}>
             <svg
               className="w-6 h-6 text-gray-800 dark:text-white"
               aria-hidden="true"
@@ -73,7 +73,10 @@ function Login() {
             {...register("password")}
           />
           {!showPassword && (
-            <div className={styles.eyes} onClick={() => setShowPassword(true)}>
+            <div
+              className={styles["eyes-password"]}
+              onClick={() => setShowPassword(true)}
+            >
               <svg
                 className="w-6 h-6 text-gray-800 dark:text-white"
                 aria-hidden="true"
@@ -93,7 +96,10 @@ function Login() {
           )}
 
           {showPassword && (
-            <div className={styles.eyes} onClick={() => setShowPassword(false)}>
+            <div
+              className={styles["eyes-password"]}
+              onClick={() => setShowPassword(false)}
+            >
               <svg
                 className="w-6 h-6 text-gray-800 dark:text-white"
                 aria-hidden="true"
@@ -116,7 +122,7 @@ function Login() {
           )}
         </div>
         {errors.password && (
-          <span>
+          <span className={styles["message-form-error"]}>
             <svg
               className="w-6 h-6 text-gray-800 dark:text-white"
               aria-hidden="true"
@@ -135,13 +141,13 @@ function Login() {
         )}
 
         <div className={styles.forgot}>
-          <a href="#" className="">
-            Esqueceu a senha?
-          </a>
+          <a href="#">Esqueceu a senha?</a>
         </div>
 
-        <button type="submit">Entrar</button>
-        <p className="">
+        <button className="btn-black" type="submit">
+          Entrar
+        </button>
+        <p>
           Você ainda não tem conta?
           <Link to="/sign-up">Cadastre-se.</Link>
         </p>

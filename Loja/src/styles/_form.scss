@@ -1,0 +1,80 @@
+@import "../styles/colors";
+
+form {
+  width: 100%;
+
+  .container-inputs {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    position: relative;
+
+    div {
+      svg {
+        path {
+          stroke-width: 0.1rem;
+        }
+      }
+    }
+
+    &:has(input:focus) {
+      div {
+        svg {
+          path {
+            stroke: white;
+          }
+        }
+      }
+    }
+
+    .eyes-password {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      bottom: 0.9rem;
+      right: 1.4rem;
+
+      svg {
+        width: 2.8rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  a {
+    color: $color-blue-100;
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    &:hover {
+      color: $color-blue-700;
+    }
+  }
+
+  .input-error {
+    border: none;
+    box-shadow: rgba(255, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+      rgb(255, 0, 0) 0px 0.125em 0.1em,
+      rgba(255, 0, 0, 0.356) 0px 0px 0px 0.1em inset;
+  }
+
+  .message-form-error {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+    margin-left: 0.4rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    p {
+      color: $color-red-300;
+      display: flex;
+      text-align: left;
+    }
+
+    svg {
+      min-height: 1.8rem;
+      max-height: 1.8rem;
+    }
+  }
+}
