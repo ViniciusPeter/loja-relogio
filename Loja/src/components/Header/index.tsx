@@ -31,7 +31,7 @@ function Header() {
         </svg>
       </div>
 
-      <Link to="/">
+      <Link to="/main">
         <h1 className="logo">Relógios</h1>
       </Link>
 
