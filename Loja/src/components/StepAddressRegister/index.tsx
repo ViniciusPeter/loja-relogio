@@ -10,18 +10,18 @@ import {
 } from "../../validations/stepAddressRegister ";
 import styles from "./styles.module.scss";
 
-type FormUserAddress = {
-  zipcode: string;
-  street: string;
-  number: number | null;
-  complement: string;
-  neighborhood: string;
-  city: string;
-  state: string;
-  reference: string;
-  type: string;
-  recipient: string;
-};
+// type FormUserAddress = {
+//   zipcode: string;
+//   street: string;
+//   number: number | null;
+//   complement: string;
+//   neighborhood: string;
+//   city: string;
+//   state: string;
+//   reference: string;
+//   type: string;
+//   recipient: string;
+// };
 
 function StepAddressRegister() {
   const { setOpenLoadingPage } = useGlobalContext();
@@ -106,7 +106,7 @@ function StepAddressRegister() {
               />
             </div>
             {errors.zipcode && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -140,6 +140,7 @@ function StepAddressRegister() {
                   className={errors.street ? styles["input-error"] : ""}
                   type="text"
                   id="street"
+                  placeholder="Digite sua rua..."
                   {...register("street")}
                 />
               </div>
@@ -150,12 +151,13 @@ function StepAddressRegister() {
                   className={errors.number ? styles["input-error"] : ""}
                   type="number"
                   id="number"
+                  placeholder="Nº"
                   {...(register("number"), { valueAsNumber: true })}
                 />
               </div>
             </div>
             {errors.street && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -173,7 +175,7 @@ function StepAddressRegister() {
               </span>
             )}
             {errors.number && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -192,16 +194,17 @@ function StepAddressRegister() {
             )}
 
             <div className={styles["container-inputs"]}>
-              <label htmlFor="complement">Complemento (opcional)</label>
+              <label htmlFor="complement">Complemento</label>
               <input
                 className={errors.complement ? styles["input-error"] : ""}
                 type="text"
                 id="complement"
+                placeholder="Digite o complemento do endereço..."
                 {...register("complement")}
               />
             </div>
             {errors.complement && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -225,11 +228,12 @@ function StepAddressRegister() {
                 className={errors.neighborhood ? styles["input-error"] : ""}
                 type="text"
                 id="neighborhood"
+                placeholder="Digite seu bairro..."
                 {...register("neighborhood")}
               />
             </div>
             {errors.neighborhood && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -249,11 +253,12 @@ function StepAddressRegister() {
 
             <div className={styles["container-city-state"]}>
               <div className={styles["container-inputs"]}>
-                <label htmlFor="city">cidade</label>
+                <label htmlFor="city">Cidade</label>
                 <input
-                  className={errors.neighborhood ? styles["input-error"] : ""}
+                  className={errors.city ? styles["input-error"] : ""}
                   type="text"
                   id="city"
+                  placeholder="Digite sua cidade..."
                   {...register("city")}
                 />
               </div>
@@ -297,7 +302,7 @@ function StepAddressRegister() {
               </div>
             </div>
             {errors.city && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -315,7 +320,7 @@ function StepAddressRegister() {
               </span>
             )}
             {errors.state && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -339,11 +344,12 @@ function StepAddressRegister() {
                 className={errors.reference ? styles["input-error"] : ""}
                 type="text"
                 id="reference"
+                placeholder="Digite um ponto de referência..."
                 {...register("reference")}
               />
             </div>
             {errors.reference && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -367,11 +373,12 @@ function StepAddressRegister() {
                 className={errors.type ? styles["input-error"] : ""}
                 type="text"
                 id="type"
+                placeholder="Digite o tipo de moradia. Ex.: casa, apartamento..."
                 {...register("type")}
               />
             </div>
             {errors.type && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -395,11 +402,12 @@ function StepAddressRegister() {
                 className={errors.recipient ? styles["input-error"] : ""}
                 type="text"
                 id="recipient"
+                placeholder="Digite o nome de alguém que irá receber a encomenda."
                 {...register("recipient")}
               />
             </div>
             {errors.recipient && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -418,7 +426,11 @@ function StepAddressRegister() {
             )}
 
             <div className={styles["container-buttons-step"]}>
-              <button type="button" onClick={handleStepTwo}>
+              <button
+                className={styles["btn-white"]}
+                type="button"
+                onClick={handleStepTwo}
+              >
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -436,7 +448,7 @@ function StepAddressRegister() {
                 </svg>
                 Voltar
               </button>
-              <button type="submit">
+              <button className={styles["btn-black"]} type="submit">
                 Finalizar
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"

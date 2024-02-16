@@ -44,7 +44,7 @@ function StepPasswordRegister() {
               />
               {!showPassword && (
                 <div
-                  className={styles.eyes}
+                  className={styles["eyes-password"]}
                   onClick={() => setShowPassword(true)}
                 >
                   <svg
@@ -67,7 +67,7 @@ function StepPasswordRegister() {
 
               {showPassword && (
                 <div
-                  className={styles.eyes}
+                  className={styles["eyes-password"]}
                   onClick={() => setShowPassword(false)}
                 >
                   <svg
@@ -121,7 +121,7 @@ function StepPasswordRegister() {
               />
               {!showConfirmPassword && (
                 <div
-                  className={styles.eyes}
+                  className={styles["eyes-password"]}
                   onClick={() => setConfirmShowPassword(true)}
                 >
                   <svg
@@ -144,7 +144,7 @@ function StepPasswordRegister() {
 
               {showConfirmPassword && (
                 <div
-                  className={styles.eyes}
+                  className={styles["eyes-password"]}
                   onClick={() => setConfirmShowPassword(false)}
                 >
                   <svg
@@ -188,7 +188,11 @@ function StepPasswordRegister() {
             )}
 
             <div className={styles["container-buttons-step"]}>
-              <button type="submit" onClick={handleStepOne}>
+              <button
+                className={styles["btn-white"]}
+                type="submit"
+                onClick={handleStepOne}
+              >
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -206,7 +210,7 @@ function StepPasswordRegister() {
                 </svg>
                 Voltar
               </button>
-              <button type="submit">
+              <button className={styles["btn-black"]} type="submit">
                 Próximo
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"

@@ -44,15 +44,16 @@ input {
     }
 
     &::selection {
-      background-color: #383838;
+      background-color: $color-blue-100;
     }
   }
 }
 
 label {
   @include font-configs();
-  height: 1.2rem;
+  height: 1.4rem;
   line-height: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.2rem;
+  margin: 0.8rem 0rem;
 }

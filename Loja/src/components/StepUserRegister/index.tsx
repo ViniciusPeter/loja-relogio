@@ -43,7 +43,7 @@ function StepUserRegister() {
               />
             </div>
             {errors.name && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -72,7 +72,7 @@ function StepUserRegister() {
               />
             </div>
             {errors.email && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -102,7 +102,7 @@ function StepUserRegister() {
               />
             </div>
             {errors.cpf && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -130,7 +130,6 @@ function StepUserRegister() {
                 <div className={styles["input-radio"]}>
                   <label htmlFor="man">Masculino</label>
                   <input
-                    // className={errors.genres ? styles["input-error"] : ""}
                     type="radio"
                     id="man"
                     value="Masculino"
@@ -138,6 +137,7 @@ function StepUserRegister() {
                     defaultChecked
                   />
                 </div>
+                <div className={styles["gender-separator"]}></div>
                 <div className={styles["input-radio"]}>
                   <label htmlFor="woman">Feminino</label>
                   <input
@@ -150,7 +150,7 @@ function StepUserRegister() {
               </div>
             </div>
             {errors.genres && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -179,7 +179,7 @@ function StepUserRegister() {
               />
             </div>
             {errors.birthday && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -209,7 +209,7 @@ function StepUserRegister() {
               />
             </div>
             {errors.cell && (
-              <span>
+              <span className={styles["message-form-error"]}>
                 <svg
                   className="w-6 h-6 text-gray-800 dark:text-white"
                   aria-hidden="true"
@@ -227,7 +227,7 @@ function StepUserRegister() {
               </span>
             )}
 
-            <button type="submit">
+            <button className={styles["btn-black"]} type="submit">
               Próximo
               <svg
                 className="w-6 h-6 text-gray-800 dark:text-white"

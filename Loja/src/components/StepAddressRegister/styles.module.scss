@@ -1,22 +1,14 @@
+@import "../../styles/index.scss";
+
 .container {
   min-width: 100%;
 }
 
 form {
-  width: 100%;
-  max-width: 500px;
-  background-color: #fff;
+  max-width: 50rem;
 
   .container-step {
     width: 100%;
-
-    h1 {
-      width: 100%;
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 18px;
-      text-align: center;
-    }
 
     .container-street-number,
     .container-city-state {
@@ -24,7 +16,7 @@ form {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 1rem;
     }
 
     .container-street-number {
@@ -32,7 +24,7 @@ form {
         width: 100%;
       }
       .container-inputs:nth-child(2) {
-        width: 150px;
+        width: 15rem;
       }
     }
 
@@ -41,84 +33,11 @@ form {
         width: 100%;
       }
       .container-inputs:nth-child(2) {
-        width: 150px;
+        width: 15rem;
       }
     }
 
     .container-inputs {
-      display: flex;
-      flex-direction: column;
-      margin-top: 10px;
-      position: relative;
-
-      div {
-        svg {
-          path {
-            stroke-width: 1.2px;
-          }
-        }
-      }
-
-      &:has(input:focus) {
-        div {
-          svg {
-            path {
-              stroke: white;
-            }
-          }
-        }
-      }
-
-      label {
-        font-size: 14px;
-        font-weight: 600;
-        margin: 8px 0;
-        letter-spacing: 2px;
-      }
-
-      input {
-        border: none;
-        border-radius: 10px;
-        outline: none;
-        background-color: #ffffff;
-        color: #474747;
-        font-size: 14px;
-        font-family: "Inter";
-
-        color: #000000;
-
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-          rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
-          rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-
-        &:focus {
-          background-color: #383838;
-          font-weight: 500;
-          color: #ffffff;
-
-          &::placeholder {
-            color: #fff;
-          }
-
-          &::selection {
-            background-color: #383838;
-          }
-        }
-      }
-
-      .eyes {
-        display: flex;
-        align-items: center;
-        position: absolute;
-        bottom: 9px;
-        right: 14px;
-
-        svg {
-          width: 30px;
-          cursor: pointer;
-        }
-      }
-
       select {
         width: 100%;
         height: 48px;
@@ -137,180 +56,10 @@ form {
         color: #474747;
         font-size: 16px;
       }
-
-      .input-error {
-        background-color: #ffffff;
-        box-shadow: rgba(255, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-          rgb(255, 0, 0) 0px 0.125em 0.1em,
-          rgba(255, 0, 0, 0.356) 0px 0px 0px 1px inset;
-      }
-    }
-
-    .genres {
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 24px;
-      border-radius: 10px;
-
-      box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-        rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
-        rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-
-      .gender-separator {
-        width: 1px;
-        height: 20px;
-        background-color: #383838;
-        border-radius: 50%;
-
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
-          rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
-          rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
-      }
-
-      .input-radio {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-
-        label {
-          font-size: 12px;
-          cursor: pointer;
-        }
-
-        input[type="radio"] {
-          all: unset;
-          box-sizing: border-box;
-          width: 18px;
-          height: 18px;
-          border: 4px solid #ffffff;
-          border-radius: 50%;
-          background-color: #ffffff;
-          cursor: pointer;
-          box-shadow: 0 0 0 2px rgb(122, 122, 122);
-
-          &:checked {
-            background-color: #474747;
-          }
-        }
-
-        input[id="man"] {
-          box-shadow: 0 0 0 2px #186ea7;
-
-          &:checked {
-            background-color: #186ea7;
-            box-shadow: 0 0 0 2px #186ea7;
-          }
-        }
-
-        input[id="woman"] {
-          box-shadow: 0 0 0 2px #f74cbe;
-
-          &:checked {
-            background-color: #f74cbe;
-            box-shadow: 0 0 0 2px #f74cbe;
-          }
-        }
-      }
-
-      &:hover {
-        background-color: #383838;
-        font-weight: 500;
-        color: #ffffff;
-
-        &::selection {
-          background-color: #383838;
-        }
-
-        .gender-separator {
-          box-shadow: rgba(255, 255, 255, 0.25) 0px 0.0625em 0.0625em,
-            rgba(255, 255, 255, 0.459) 0px 0.125em 0.5em,
-            rgb(255, 255, 255) 0px 0px 0px 1px inset;
-        }
-
-        .input-radio {
-          label {
-            color: #ffff;
-          }
-
-          input[type="radio"] {
-            border: 4px solid #383838;
-            background-color: #383838;
-          }
-
-          input[id="man"] {
-            box-shadow: 0 0 0 2px #186ea7;
-
-            &:checked {
-              background-color: #186ea7;
-              box-shadow: 0 0 0 2px #186ea7;
-            }
-          }
-
-          input[id="woman"] {
-            box-shadow: 0 0 0 2px #f74cbe;
-
-            &:checked {
-              background-color: #f74cbe;
-              box-shadow: 0 0 0 2px #f74cbe;
-            }
-          }
-        }
-      }
     }
 
     .forgot {
-      margin: 4px 0;
-      font-size: 14px;
-    }
-
-    button {
-      width: 100%;
-      height: 48px;
-      margin: 22px 0;
-      background-color: #000000;
-      color: #fff;
-      border-radius: 10px;
-      letter-spacing: 2px;
-
-      svg {
-        height: 28px;
-        margin-left: 10px;
-      }
-    }
-
-    a {
-      color: rgb(0, 89, 255);
-      font-weight: 700;
-
-      &:hover {
-        color: rgb(6, 29, 161);
-      }
-    }
-
-    p {
-      text-align: center;
-
-      a {
-        margin-left: 6px;
-      }
-    }
-  }
-
-  span {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-top: 4px;
-    margin-left: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    color: red;
-
-    svg {
-      width: 18px;
-      height: 18px;
+      margin: 0.4rem 0;
     }
   }
 
@@ -319,7 +68,15 @@ form {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 1rem;
+    margin: 2.2rem 0;
+
+    button {
+      svg {
+        height: 28px;
+        margin-left: 10px;
+      }
+    }
 
     button:nth-child(1) {
       width: 40%;

@@ -55,4 +55,9 @@ button {
   background-color: white;
   color: $color-black;
   font-weight: 600;
+
+  &:hover {
+    background-color: $color-gray-900;
+    color: $color-white;
+  }
 }
