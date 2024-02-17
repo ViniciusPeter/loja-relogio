@@ -1,3 +1,9 @@
+@import "../../styles/index.scss";
+
+@mixin trasition {
+  transition: all 0.4s;
+}
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -14,11 +20,13 @@
 
   .sidebar {
     width: 80%;
-    max-width: 340px;
+    max-width: 34rem;
     height: 100vh;
-    background-color: #ffffff;
-    color: black;
+    background-color: $color-white;
+    color: $color-black;
     position: relative;
+
+    overflow-y: auto;
 
     animation: openSide 1s normal;
 
@@ -27,14 +35,14 @@
     align-items: center;
     justify-content: flex-start;
 
-    box-shadow: 1px 0px 14px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0.1rem 0rem 1.4rem -0.1rem rgba(0, 0, 0, 0.75);
 
     .sidebar-title {
       width: 100%;
-      height: 64px;
-      padding: 0 10px;
-      background-color: rgb(255, 255, 255);
-      border-bottom: 1px solid #ccc;
+      height: 6.4rem;
+      padding: 0 1rem;
+      background-color: $color-white;
+      border-bottom: 0.1rem solid $color-gray-100;
 
       display: flex;
       align-items: center;
@@ -46,7 +54,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 18px;
+        font-size: 1.8rem;
         font-weight: 700;
       }
 
@@ -54,109 +62,187 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        // background-color: #ccc;
-        padding: 4px;
-        border-radius: 8px;
+        padding: 0.4rem;
+        border-radius: 0.8rem;
         cursor: pointer;
 
         &:hover {
-          background-color: #ccc;
+          background-color: $color-gray-100;
+          @include trasition();
+
           svg {
             path {
-              stroke: white;
+              stroke: $color-white;
             }
           }
         }
 
         svg {
-          height: 20px;
+          height: 2rem;
         }
       }
     }
 
     .container-profiler {
       width: 100%;
-      padding: 20px 10px;
+      padding: 2rem 1rem;
 
+      .profile-login,
       .profiler,
-      .login {
+      .login,
+      .login-signup {
         width: 100%;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 0.8rem;
+      }
+
+      .profile-login {
+        justify-content: space-between;
+        height: 4rem;
+        background-color: $color-gray-100;
+        color: $color-black;
+        border-radius: 0.8rem;
+        padding-right: 0.4rem;
+        cursor: pointer;
+
+        div {
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+        }
+
+        svg:nth-child(1) {
+          height: 3.4rem;
+        }
+
+        svg:nth-child(2) {
+          height: 2rem;
+        }
+
+        h3 {
+          font-size: 1.8rem;
+        }
       }
 
       .profiler {
+        height: 4rem;
+
         svg {
-          height: 34px;
+          height: 3.4rem;
         }
 
         h3 {
-          font-size: 18px;
+          font-size: 1.8rem;
         }
       }
 
-      .login {
-        height: 36px;
-        padding: 0 16px;
-        background-color: #1b1b1b;
-        color: #ffffff;
-        border-radius: 8px;
-        margin-top: 12px;
+      .login,
+      .login-signup {
+        height: 3.6rem;
+        padding: 0 1.6rem;
+        background-color: $color-gray-900;
+        color: $color-white;
+        border-radius: 0.8rem;
+        margin-top: 1.2rem;
         cursor: pointer;
 
         &:hover {
-          background-color: #a5a5a5;
-          color: #fff;
+          @include trasition();
+          background-color: $color-gray-300;
+          color: $color-white;
         }
 
         svg {
-          height: 20px;
+          height: 2rem;
         }
 
         h3 {
-          font-size: 16px;
+          font-size: 1.6rem;
           font-weight: 700;
+        }
+      }
+
+      .login-signup {
+        background-color: $color-gray-100;
+        color: $color-black;
+
+        &:hover {
+          @include trasition();
+          background-color: $color-gray-500;
+          color: $color-white;
         }
       }
     }
 
-    ul {
+    nav {
       width: 100%;
-      padding: 0 10px;
 
-      li {
-        list-style: none;
-
-        &:hover {
-          background-color: #a5a5a5;
-          color: #fff;
-          border: none;
-        }
+      a {
+        color: $color-gray-900;
       }
 
-      .nav-item {
-        height: 36px;
+      ul {
         width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 0 16px;
-        border: 1px solid rgb(63, 63, 63);
-        border-radius: 8px;
-        margin-top: 12px;
-        cursor: pointer;
+        padding: 0 1rem;
 
-        svg {
-          height: 20px;
+        li {
+          list-style: none;
+
+          &:hover {
+            @include trasition();
+            background-color: $color-gray-300;
+            color: $color-white;
+            border: none;
+          }
         }
 
-        h3 {
-          font-size: 16px;
-          font-weight: 700;
+        .nav-item {
+          height: 3.6rem;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+          padding: 0 1.6rem;
+          border: 0.1rem solid $color-gray-700;
+          border-radius: 0.8rem;
+          margin-top: 1.2rem;
+          cursor: pointer;
+
+          svg {
+            height: 2rem;
+          }
+
+          h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+          }
         }
       }
     }
+  }
+
+  footer {
+    width: 100%;
+    height: 4rem;
+    position: absolute;
+    bottom: 0;
+    background-color: $color-white;
+    color: $color-gray-500;
+
+    p {
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+  }
+
+  .closer {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
   }
 }
 
