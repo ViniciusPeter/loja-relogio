@@ -52,16 +52,36 @@ function Main() {
   return (
     <div className={styles.container}>
       <section className={styles.banner}></section>
-      <section className={styles["carrousel-category"]}>
-        {categoryList.map((item) => {
-          return (
-            <CategoryCard
-              id={item.id}
-              imgCategory={item.imgCategory}
-              category={item.category}
-            />
-          );
-        })}
+      <div className={styles.title}>
+        <svg
+          className="w-6 h-6 text-gray-800 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 12h14"
+          />
+        </svg>
+        <h1>Categorias </h1>
+      </div>
+      <section className={styles["container-category"]}>
+        <div className={styles["carrousel-category"]}>
+          {categoryList.map((item) => {
+            return (
+              <CategoryCard
+                id={item.id}
+                imgCategory={item.imgCategory}
+                category={item.category}
+              />
+            );
+          })}
+        </div>
       </section>
 
       <section className={styles["container-products"]}>Products</section>
